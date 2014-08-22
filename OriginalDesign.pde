@@ -46,16 +46,13 @@ void keyPressed()
   if (key == 'w') 
   {
     keyW = true;
-  } 
-  else if (key == 's') 
+  } else if (key == 's') 
   {
     keyS = true;
-  } 
-  else if (key == 'k') 
+  } else if (key == 'k') 
   {
     keyUp = true;
-  }
-  else if (key == 'm')
+  } else if (key == 'm')
   {
     keyDown = true;
   }
@@ -66,16 +63,14 @@ void keyReleased()
   if (key == 'w') 
   {
     keyW = false;
-  } 
-  else if (key == 's') 
+  } else if (key == 's') 
   {
     keyS = false;
   } 
   if (key == 'k')
   {
     keyUp = false;
-  }
-  else if (key == 'm')
+  } else if (key == 'm')
   {
     keyDown = false;
   }
@@ -112,8 +107,7 @@ class Ball
       background(255, 20, 147);
       fill(254);
       text("PLAYER 1 WINS!!!", 225, 100);
-    }
-    else if (point2 > 19)
+    } else if (point2 > 19)
     {
       gameOver = true;
       background(255, 20, 147);
@@ -138,16 +132,14 @@ class Ball
     if (up == 1)
     {
       ballY -= 5;
-    }
-    else 
+    } else 
     {
       ballY += 5;
     }
     if (left == 1)
     {
       ballX -= 5;
-    }
-    else 
+    } else 
     {
       ballX += 5;
     }
@@ -192,7 +184,7 @@ class Paddle
     paddleX = tempX;
     paddleY = tempY;
   }
- 
+
   void show()
   {
     fill(255);
@@ -210,8 +202,7 @@ class leftPaddle extends Paddle
     if (keyW == true)
     {
       paddleY -= 5;
-    }
-    else if (keyS == true)
+    } else if (keyS == true)
     {
       paddleY += 5;
     }
@@ -239,11 +230,10 @@ class rightPaddle extends Paddle
   }
   void move()
   {
-     if (keyUp == true)
+    if (keyUp == true)
     {
       paddleY -= 5;
-    }
-    else if (keyDown == true)
+    } else if (keyDown == true)
     {
       paddleY += 5;
     }
@@ -274,8 +264,7 @@ class rightAttack extends rightPaddle
     if (keyUp == true)
     {
       paddleY -= 5;
-    }
-    else if (keyDown == true)
+    } else if (keyDown == true)
     {
       paddleY += 5;
     }
@@ -313,8 +302,7 @@ class leftAttack extends leftPaddle
     if (keyW == true)
     {
       paddleY -= 5;
-    }
-    else if (keyS == true)
+    } else if (keyS == true)
     {
       paddleY += 5;
     }
@@ -336,7 +324,10 @@ class leftAttack extends leftPaddle
   {
     fill(255);
     atklength1 = (point2 - point1)*5;
-
+    if (atklength1 < 0)
+    {
+      atklength1 = 0;
+    }
     rect(paddleX, paddleY, 10, 26 + atklength1);
   }
 }
