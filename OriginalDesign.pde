@@ -1,333 +1,159 @@
-leftPaddle player1 = new leftPaddle(0, 80);
-rightPaddle player2 = new rightPaddle(445, 80);
-rightAttack attack1 = new rightAttack(150, 87);
-leftAttack attack2 = new leftAttack(300, 87);
-boolean keyW = false;
-boolean keyS = false;
-boolean keyUp = false;
-boolean keyDown = false;
-Ball boing = new Ball(int(random(2)), int(random(2)));
-boolean gameOver = false;
-int point1 = 0;
-int point2 = 0;
+int r = 255, g = 255, b = 255;
+int x = 200, y = 200;
+boolean keyW = false, keyA = false, keyS = false, keyD = false;
+
 
 void setup()
 {
-  size(450, 200);
-  textAlign(CENTER);
-  textSize(24);
-  fill(0, 0, 255);
+  size(400,400);
+  background(0);
+  frameRate(100);
+  noStroke();
 }
-
 void draw()
 {
-  if (gameOver == false)
+  fill(r,g,b);
+  move();
+  boundary();
+  rect(x - 1, y - 1, 3, 3);
+}
+
+void boundary()
+{
+  if(x < 0)
   {
-    background(0);
-    player1.move();
-    player2.move();
-    player1.show();
-    player2.show();
-    attack1.move();
-    attack2.move();
-    attack1.show();
-    attack2.show();
-    boing.bounce();
-    boing.check();
-    boing.move();
-    boing.show();
-    boing.points();
+    x = 0;
+  }
+  if(x > 400)
+  {
+    x = 398;
+  }
+  if(y < 0)
+  {
+    y = 0;
+  }
+  if(y > 400)
+  {
+    y = 398;
   }
 }
 
-
-void keyPressed() 
+void move()
 {
-  if (key == 'w') 
+  if(keyW == true)
+  {
+    y -= 3;
+  }
+  else if(keyS == true)
+  {
+    y += 3;
+  }
+  if(keyA == true)
+  {
+    x -= 3;
+  }
+  else if(keyD == true)
+  {
+    x += 3;
+  }
+}
+
+void keyPressed()
+{
+  if(key == 'w')
   {
     keyW = true;
-  } else if (key == 's') 
+  }
+  else if(key == 'a')
+  {
+    keyA = true;
+  }
+  else if(key == 's')
   {
     keyS = true;
-  } else if (key == 'k') 
+  }
+  else if(key == 'd')
   {
-    keyUp = true;
-  } else if (key == 'm')
+    keyD = true;
+  }
+  if(key == '0')
   {
-    keyDown = true;
+    r = 0;
+    g = 0;
+    b = 0;
+  }
+  if(key == '1')
+  {
+    r = 255;
+    g = 0;
+    b = 0;
+  }
+  if(key == '2')
+  {
+    r = 0;
+    g = 255;
+    b = 0;
+  }
+  if(key == '3')
+  {
+    r = 0;
+    g = 0;
+    b = 255;
+  }
+  if(key == '4')
+  {
+    r = 255;
+    g = 255;
+    b = 0;
+  }
+  if(key == '5')
+  {
+    r = 255;
+    g = 0;
+    b = 255;
+  }
+  if(key == '6')
+  {
+    r = 255;
+    g = 140;
+    b = 0;
+  }
+  if(key == '7')
+  {
+    r = 139;
+    g = 69;
+    b = 19;
+  }
+  if(key == '8')
+  {
+    r = 190;
+    g = 190;
+    b = 190;
+  }
+  if(key == '9')
+  {
+    r = 255;
+    g = 255;
+    b = 255;
   }
 }
 
-void keyReleased() 
+void keyReleased()
 {
-  if (key == 'w') 
+  if(key == 'w')
   {
     keyW = false;
-  } else if (key == 's') 
+  }
+  else if(key == 'a')
+  {
+    keyA = false;
+  }
+  else if(key == 's')
   {
     keyS = false;
-  } 
-  if (key == 'k')
-  {
-    keyUp = false;
-  } else if (key == 'm')
-  {
-    keyDown = false;
   }
-}
-int up;
-int left;
-class Ball
-{
-  int ballX = 225;
-  int ballY = 100;
-
-  Ball(int upTemp, int leftTemp)
+  else if(key == 'd')
   {
-    up = upTemp;
-    left = leftTemp;
-  }
-
-  void points()
-  {
-    if (ballX > 445)
-    {
-      point1++;
-    }
-    if (ballX < 5)
-    {
-      point2++;
-    }
-    textSize(24);
-    text(point1, 205, 25);
-    text(point2, 245, 25);
-    if (point1 > 19)
-    {
-      gameOver = true;
-      background(255, 20, 147);
-      fill(254);
-      text("PLAYER 1 WINS!!!", 225, 100);
-    } else if (point2 > 19)
-    {
-      gameOver = true;
-      background(255, 20, 147);
-      fill(254);
-      text("PLAYER 2 WINS!!!", 225, 100);
-    }
-  }
-
-  void check()
-  {
-    if (get(ballX+6, ballY) == color(255))
-    {
-      left = 1;
-    }
-    if (get(ballX-6, ballY) == color(255))
-    {
-      left = 2;
-    }
-  }
-  void move()
-  {
-    if (up == 1)
-    {
-      ballY -= 5;
-    } else 
-    {
-      ballY += 5;
-    }
-    if (left == 1)
-    {
-      ballX -= 5;
-    } else 
-    {
-      ballX += 5;
-    }
-  }
-  void bounce()
-  {
-    if (ballY > 195)
-    {
-      up = 1;
-    }
-    if (ballY < 5)
-    {
-      up = 2;
-    }
-    if (ballX < 5)
-    {
-      left = 2;
-    }
-    if (ballX > 445)
-    {
-      left = 1;
-    }
-  }
-  void show()
-  {
-    fill(255);
-    ellipse(ballX, ballY, 10, 10);
-  }
-}
-
-
-class Paddle
-{
-  int paddleX;
-  int paddleY;
-  int atklength1;
-  int atklength2;
-  Paddle() {
-  };
-  Paddle(int tempX, int tempY)
-  {
-    paddleX = tempX;
-    paddleY = tempY;
-  }
-
-  void show()
-  {
-    fill(255);
-    rect(paddleX, paddleY, 5, 40);
-  }
-}
-class leftPaddle extends Paddle
-{
-  leftPaddle(int tempX, int tempY)
-  {
-    super (tempX, tempY);
-  }
-  void move()
-  {
-    if (keyW == true)
-    {
-      paddleY -= 5;
-    } else if (keyS == true)
-    {
-      paddleY += 5;
-    }
-
-    if (paddleY < 0)
-    {
-      paddleY = 0;
-    }
-    if (paddleY > 160)
-    {
-      paddleY = 160;
-    }
-  }
-  void show()
-  {
-    super.show();
-  }
-}
-
-class rightPaddle extends Paddle
-{
-  rightPaddle(int tempX, int tempY)
-  {
-    super (tempX, tempY);
-  }
-  void move()
-  {
-    if (keyUp == true)
-    {
-      paddleY -= 5;
-    } else if (keyDown == true)
-    {
-      paddleY += 5;
-    }
-
-    if (paddleY < 0)
-    {
-      paddleY = 0;
-    }
-    if (paddleY > 160)
-    {
-      paddleY = 160;
-    }
-  }
-  void show()
-  {
-    super.show();
-  }
-}
-
-class rightAttack extends rightPaddle
-{
-  rightAttack(int tempX, int tempY)
-  {
-    super (tempX, tempY);
-  }
-  void move()
-  {
-    if (keyUp == true)
-    {
-      paddleY -= 5;
-    } else if (keyDown == true)
-    {
-      paddleY += 5;
-    }
-
-    if (paddleY < 0)
-    {
-      paddleY = 0;
-    }
-    if (paddleY > 174 - atklength2)
-    {
-      paddleY = 174 - atklength2;
-    }
-  }
-  void show()
-  {
-    fill(255);
-    atklength2 = (point1 - point2)*5;
-    if (atklength2 < 0)
-    {
-      atklength2 = 0;
-    }
-
-    rect(paddleX, paddleY, 10, 26 + atklength2);
-  }
-}
-
-class leftAttack extends leftPaddle
-{
-  leftAttack(int tempX, int tempY)
-  {
-    super (tempX, tempY);
-  }
-  void move()
-  {
-    if (keyW == true)
-    {
-      paddleY -= 5;
-    } else if (keyS == true)
-    {
-      paddleY += 5;
-    }
-
-    if (paddleY < 0)
-    {
-      paddleY = 0;
-    }
-    if (atklength1 < 0)
-    {
-      atklength1 = 0;
-    }
-    if (paddleY > 174 - atklength1)
-    {
-      paddleY = 174 - atklength1;
-    }
-  }
-  void show()
-  {
-    fill(255);
-    atklength1 = (point2 - point1)*5;
-    if (atklength1 < 0)
-    {
-      atklength1 = 0;
-    }
-    rect(paddleX, paddleY, 10, 26 + atklength1);
+    keyD = false;
   }
 }
