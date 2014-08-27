@@ -78,9 +78,7 @@ void keyPressed()
   }
   if(key == '0')
   {
-    r = 0;
-    g = 0;
-    b = 0;
+    background(0);
   }
   if(key == '1')
   {
