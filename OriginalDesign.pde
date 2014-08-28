@@ -1,5 +1,5 @@
 int r = 255, g = 255, b = 255;
-int x = 0, y = 0;
+int x = 1, y = 1;
 boolean keyW = false, keyA = false, keyS = false, keyD = false;
 
 
@@ -20,17 +20,17 @@ void draw()
 
 void boundary()
 {
-  if(x < 0)
+  if(x < 1)
   {
-    x = 0;
+    x = 1;
   }
   if(x > 400)
   {
     x = 398;
   }
-  if(y < 0)
+  if(y < 1)
   {
-    y = 0;
+    y = 1;
   }
   if(y > 400)
   {
