@@ -1,6 +1,6 @@
 int r = 255, g = 255, b = 255;
 int x = 1, y = 1;
-boolean keyW = false, keyA = false, keyS = false, keyD = false;
+boolean keyW = false, keyA = false, keyS = false, keyD = false, border = false;;
 
 
 void setup()
@@ -15,7 +15,21 @@ void draw()
   fill(r,g,b);
   move();
   boundary();
+  outline();
   rect(x - 1, y - 1, 3, 3);
+}
+
+void outline()
+{
+  if(border)
+  {
+    stroke(100);
+  }
+  else 
+  {
+    noStroke();
+    
+  }
 }
 
 void boundary()
@@ -75,6 +89,16 @@ void keyPressed()
   else if(key == 'd')
   {
     keyD = true;
+  }
+  if(key == 'n')
+  {
+    border = !border;
+  }
+  if(key == 'b')
+  {
+    r = 0;
+    g = 0;
+    b = 0;
   }
   if(key == '0')
   {
