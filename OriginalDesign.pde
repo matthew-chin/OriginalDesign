@@ -1,5 +1,5 @@
 int r = 255, g = 255, b = 255;
-int x = 200, y = 200;
+int x = 0, y = 0;
 boolean keyW = false, keyA = false, keyS = false, keyD = false;
 
 
