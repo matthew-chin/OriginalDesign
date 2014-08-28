@@ -19,6 +19,12 @@ void draw()
   rect(x - 1, y - 1, 3, 3);
 }
 
+void mouseClicked()
+{
+  x = mouseX - 1;
+  y = mouseY - 1;
+}
+
 void outline()
 {
   if(border)

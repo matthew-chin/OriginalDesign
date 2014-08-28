@@ -35,6 +35,12 @@ public void draw()
   rect(x - 1, y - 1, 3, 3);
 }
 
+public void mouseClicked()
+{
+  x = mouseX - 1;
+  y = mouseY - 1;
+}
+
 public void outline()
 {
   if(border)
