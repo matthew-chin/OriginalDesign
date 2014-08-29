@@ -1,4 +1,5 @@
 int r = 255, g = 255, b = 255;
+int br = 0, bg = 0, bb = 0;
 int x = 1, y = 1;
 boolean keyW = false, keyA = false, keyS = false, keyD = false, border = false;;
 
@@ -154,9 +155,9 @@ void keyPressed()
   }
   if(key == '8')
   {
-    r = 190;
-    g = 190;
-    b = 190;
+    r = 100;
+    g = 100;
+    b = 100;
   }
   if(key == '9')
   {
